@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arquivo de Notícias: pesquise, cadastre e organize notícias sobre política, história, economia e acontecimentos que marcaram o mundo.">
+    <meta name="theme-color" content="#0b4f2a">
+
+    <title>Arquivo de Notícias</title>
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b4f2a'/%3E%3Crect x='14' y='16' width='36' height='6' rx='3' fill='%23facc15'/%3E%3Crect x='14' y='29' width='36' height='5' rx='2.5' fill='white'/%3E%3Crect x='14' y='40' width='24' height='5' rx='2.5' fill='white'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <a class="pular-conteudo" href="#conteudo">Ir para o conteúdo</a>
+
+    <header class="cabecalho">
+        <div class="cabecalho-conteudo">
+            <h1>Arquivo de Notícias</h1>
+            <p>Política, história e acontecimentos que marcaram o mundo.</p>
+
+            <ul class="estatisticas" aria-label="Resumo do arquivo">
+                <li>
+                    <strong id="estat-total">0</strong>
+                    <span>notícias</span>
+                </li>
+                <li>
+                    <strong id="estat-assuntos">0</strong>
+                    <span>assuntos</span>
+                </li>
+                <li>
+                    <strong id="estat-periodo">—</strong>
+                    <span>período</span>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <nav class="menu" aria-label="Seções do site">
+        <a href="#pesquisa">Pesquisar</a>
+        <a href="#resultados">Notícias</a>
+        <a href="#cadastro">Cadastrar</a>
+        <a href="#backup">Backup</a>
+    </nav>
+
+    <main class="container" id="conteudo">
+        <noscript>
+            <p class="aviso-noscript">
+                Este site precisa do JavaScript ativado para funcionar.
+            </p>
+        </noscript>
+
+        <!-- PESQUISA -->
+        <section class="cartao" id="pesquisa" aria-labelledby="titulo-pesquisa">
+            <h2 id="titulo-pesquisa">Pesquisar notícias</h2>
+
+            <form id="form-pesquisa" class="grade-formulario">
+                <div class="campo campo-largo">
+                    <label for="palavra">Palavra-chave</label>
+                    <input
+                        type="search"
+                        id="palavra"
+                        placeholder="Ex.: eleições, Constituição..."
+                        autocomplete="off"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="assunto">Assunto</label>
+                    <select id="assunto">
+                        <option value="">Todos os assuntos</option>
+                        <option value="Política">Política</option>
+                        <option value="História">História</option>
+                        <option value="Economia">Economia</option>
+                        <option value="Sociedade">Sociedade</option>
+                        <option value="Internacional">Internacional</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="ordenacao">Ordenar por</label>
+                    <select id="ordenacao">
+                        <option value="recentes">Mais recentes primeiro</option>
+                        <option value="antigas">Mais antigas primeiro</option>
+                        <option value="titulo">Título (A–Z)</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="data-inicial">Data inicial</label>
+                    <input type="date" id="data-inicial">
+                </div>
+
+                <div class="campo">
+                    <label for="data-final">Data final</label>
+                    <input type="date" id="data-final">
+                </div>
+
+                <div class="botoes campo-largo">
+                    <button type="submit">Pesquisar</button>
+                    <button type="reset" class="secundario">Limpar filtros</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- RESULTADOS -->
+        <section class="cartao" id="resultados" aria-labelledby="titulo-resultados">
+            <h2 id="titulo-resultados">Notícias do arquivo</h2>
+            <p id="quantidade" class="quantidade" role="status" aria-live="polite"></p>
+
+            <div id="lista-noticias"></div>
+
+            <div class="paginacao">
+                <button type="button" id="mostrar-mais" class="secundario" hidden>
+                    Mostrar mais notícias
+                </button>
+            </div>
+        </section>
+
+        <!-- CADASTRO / EDIÇÃO -->
+        <section class="cartao" id="cadastro" aria-labelledby="titulo-cadastro">
+            <h2 id="titulo-cadastro">Cadastrar nova notícia</h2>
+
+            <form id="form-cadastro" class="grade-formulario">
+                <div class="campo campo-largo">
+                    <label for="novo-titulo">Título da notícia</label>
+                    <input
+                        type="text"
+                        id="novo-titulo"
+                        placeholder="Digite o título"
+                        maxlength="150"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="novo-assunto">Assunto</label>
+                    <select id="novo-assunto" required>
+                        <option value="">Selecione um assunto</option>
+                        <option value="Política">Política</option>
+                        <option value="História">História</option>
+                        <option value="Economia">Economia</option>
+                        <option value="Sociedade">Sociedade</option>
+                        <option value="Internacional">Internacional</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="novo-data">Data do acontecimento</label>
+                    <input type="date" id="novo-data" required>
+                </div>
+
+                <div class="campo campo-largo">
+                    <label for="novo-resumo">Resumo</label>
+                    <textarea
+                        id="novo-resumo"
+                        rows="4"
+                        maxlength="600"
+                        placeholder="Escreva um resumo do acontecimento"
+                        required
+                    ></textarea>
+                    <small class="dica" id="contador-resumo">0/600</small>
+                </div>
+
+                <div class="campo">
+                    <label for="nova-fonte">Fonte da informação</label>
+                    <input
+                        type="text"
+                        id="nova-fonte"
+                        placeholder="Ex.: nome do jornal ou instituição"
+                        maxlength="120"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="novo-link">Link da notícia <span class="opcional">(opcional)</span></label>
+                    <input
+                        type="url"
+                        id="novo-link"
+                        placeholder="https://exemplo.com/noticia"
+                        maxlength="500"
+                    >
+                </div>
+
+                <div class="botoes campo-largo">
+                    <button type="submit" id="botao-salvar">Cadastrar notícia</button>
+                    <button type="button" id="botao-cancelar" class="secundario" hidden>
+                        Cancelar edição
+                    </button>
+                </div>
+            </form>
+
+            <p id="mensagem-cadastro" class="mensagem-formulario" role="status" aria-live="polite"></p>
+        </section>
+
+        <!-- BACKUP -->
+        <section class="cartao" id="backup" aria-labelledby="titulo-backup">
+            <h2 id="titulo-backup">Backup e dados</h2>
+            <p class="texto-suave">
+                As notícias ficam salvas apenas neste navegador. Exporte um arquivo
+                para guardar uma cópia de segurança ou levar suas notícias para
+                outro computador.
+            </p>
+
+            <div class="botoes">
+                <button type="button" id="botao-exportar">Exportar notícias</button>
+                <button type="button" id="botao-importar" class="secundario">Importar notícias</button>
+                <button type="button" id="botao-restaurar" class="secundario">Restaurar exemplos</button>
+            </div>
+
+            <input type="file" id="arquivo-importacao" accept="application/json,.json" hidden>
+        </section>
+    </main>
+
+    <footer>
+        <p>Arquivo de Notícias © <span id="ano">2026</span></p>
+    </footer>
+
+    <!-- Janela de confirmação -->
+    <dialog id="dialogo" aria-labelledby="dialogo-titulo">
+        <form method="dialog">
+            <h2 id="dialogo-titulo">Confirmar</h2>
+            <p id="dialogo-texto"></p>
+            <div class="botoes">
+                <button value="cancelar" class="secundario">Cancelar</button>
+                <button value="confirmar" id="dialogo-confirmar" class="perigo">Confirmar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <button type="button" id="voltar-topo" class="voltar-topo" aria-label="Voltar ao topo" hidden>↑</button>
+</body>
+</html>

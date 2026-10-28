@@ -1,0 +1,562 @@
+/* ============================================================
+   0. PALETA (verde e amarelo)
+   ============================================================ */
+:root {
+    --verde-escuro: #0b4f2a;
+    --verde-medio: #0f6b38;
+    --verde: #15803d;
+    --verde-hover: #116332;
+    --verde-claro: #dcfce7;
+    --amarelo: #facc15;
+    --amarelo-hover: #eab308;
+    --amarelo-claro: #fef3c7;
+    --vermelho: #b91c1c;
+    --vermelho-hover: #991b1b;
+    --fundo: #f3f8f1;
+    --texto: #1f2937;
+    --texto-suave: #5b6b5e;
+    --borda: #c9d8c5;
+    --sombra: 0 4px 15px rgba(11, 79, 42, 0.08);
+}
+
+/* ============================================================
+   1. CONFIGURAÇÃO GERAL
+   ============================================================ */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--fundo);
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+h2 {
+    margin-top: 0;
+    color: var(--verde-escuro);
+}
+
+.texto-suave {
+    color: var(--texto-suave);
+}
+
+.aviso-noscript {
+    background: var(--amarelo-claro);
+    border: 1px solid var(--amarelo-hover);
+    padding: 14px;
+    border-radius: 8px;
+}
+
+/* Link para pular direto ao conteúdo (acessibilidade) */
+.pular-conteudo {
+    position: absolute;
+    left: 10px;
+    top: -60px;
+    background: var(--amarelo);
+    color: #3b2f00;
+    padding: 10px 16px;
+    border-radius: 0 0 8px 8px;
+    font-weight: bold;
+    z-index: 100;
+}
+
+.pular-conteudo:focus {
+    top: 0;
+}
+
+/* ============================================================
+   2. CABEÇALHO E MENU
+   ============================================================ */
+.cabecalho {
+    background-color: var(--verde-escuro);
+    color: white;
+    text-align: center;
+    padding: 44px 20px 36px;
+    border-bottom: 6px solid var(--amarelo);
+}
+
+.cabecalho-conteudo {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.cabecalho h1 {
+    font-size: 38px;
+    margin: 0 0 10px;
+    color: var(--amarelo);
+}
+
+.cabecalho p {
+    color: var(--verde-claro);
+    margin: 0;
+}
+
+.estatisticas {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin: 26px 0 0;
+    padding: 0;
+}
+
+.estatisticas li {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(250, 204, 21, 0.35);
+    border-radius: 10px;
+    padding: 10px 22px;
+    min-width: 120px;
+}
+
+.estatisticas strong {
+    display: block;
+    font-size: 24px;
+    color: var(--amarelo);
+    line-height: 1.2;
+}
+
+.estatisticas span {
+    font-size: 13px;
+    color: var(--verde-claro);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.menu {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background-color: var(--verde-medio);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    overflow-x: auto;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.menu a:hover {
+    background-color: var(--amarelo);
+    color: #3b2f00;
+}
+
+/* Evita que o menu fixo cubra o título ao navegar pelos links */
+section[id] {
+    scroll-margin-top: 70px;
+}
+
+/* ============================================================
+   3. CARTÕES (seções)
+   ============================================================ */
+.cartao {
+    background-color: white;
+    padding: 28px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    border-top: 4px solid var(--amarelo);
+    box-shadow: var(--sombra);
+}
+
+/* ============================================================
+   4. FORMULÁRIOS
+   ============================================================ */
+.grade-formulario {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 20px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo-largo {
+    grid-column: 1 / -1;
+}
+
+label {
+    font-weight: bold;
+}
+
+.opcional {
+    font-weight: normal;
+    color: var(--texto-suave);
+    font-size: 14px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--borda);
+    border-radius: 7px;
+    font: inherit;
+    font-size: 16px;
+    background: white;
+    color: var(--texto);
+}
+
+textarea {
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--amarelo);
+    border-color: var(--verde);
+}
+
+.dica {
+    color: var(--texto-suave);
+    text-align: right;
+}
+
+.mensagem-formulario {
+    margin: 14px 0 0;
+    min-height: 1.6em;
+    font-weight: bold;
+}
+
+.mensagem-formulario.erro {
+    color: var(--vermelho);
+}
+
+.mensagem-formulario.sucesso {
+    color: var(--verde);
+}
+
+/* ============================================================
+   5. BOTÕES
+   ============================================================ */
+.botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+button {
+    padding: 13px 22px;
+    border: none;
+    border-radius: 7px;
+    background-color: var(--verde);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0;
+    transition: background-color 0.15s;
+}
+
+button:hover {
+    background-color: var(--verde-hover);
+}
+
+button:focus-visible,
+.menu a:focus-visible,
+.noticia a:focus-visible {
+    outline: 3px solid var(--amarelo);
+    outline-offset: 2px;
+}
+
+button.secundario {
+    background-color: var(--amarelo);
+    color: #3b2f00;
+}
+
+button.secundario:hover {
+    background-color: var(--amarelo-hover);
+}
+
+button.perigo {
+    background-color: var(--vermelho);
+    color: white;
+}
+
+button.perigo:hover {
+    background-color: var(--vermelho-hover);
+}
+
+button.pequeno {
+    padding: 8px 14px;
+    font-size: 14px;
+}
+
+/* ============================================================
+   6. NOTÍCIAS
+   ============================================================ */
+.quantidade {
+    color: var(--texto-suave);
+    min-height: 1.6em;
+    margin: 0 0 16px;
+}
+
+#lista-noticias {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.noticia {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid var(--borda);
+    border-left: 5px solid var(--verde);
+    border-radius: 10px;
+    padding: 20px;
+    background: white;
+    overflow-wrap: anywhere;
+    transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.noticia:hover {
+    box-shadow: 0 6px 18px rgba(11, 79, 42, 0.14);
+    transform: translateY(-2px);
+}
+
+.noticia h3 {
+    margin: 0;
+    color: var(--verde-escuro);
+    line-height: 1.4;
+}
+
+.noticia p {
+    margin: 0;
+}
+
+.categoria {
+    align-self: flex-start;
+    background-color: var(--amarelo-claro);
+    color: #854d0e;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.data,
+.fonte {
+    color: var(--texto-suave);
+    font-size: 14px;
+}
+
+.noticia a {
+    color: var(--verde);
+    font-weight: bold;
+}
+
+.noticia a:hover {
+    color: var(--verde-escuro);
+}
+
+.acoes {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.paginacao {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.paginacao:empty {
+    margin: 0;
+}
+
+/* ============================================================
+   7. JANELA DE CONFIRMAÇÃO
+   ============================================================ */
+dialog {
+    border: none;
+    border-radius: 12px;
+    padding: 26px;
+    width: 90%;
+    max-width: 420px;
+    border-top: 4px solid var(--amarelo);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    color: var(--texto);
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+dialog h2 {
+    margin-bottom: 10px;
+}
+
+dialog .botoes {
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+/* ============================================================
+   8. AVISOS (toast) E BOTÃO VOLTAR AO TOPO
+   ============================================================ */
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translate(-50%, 20px);
+    max-width: 90%;
+    padding: 14px 22px;
+    border-radius: 8px;
+    background: var(--verde-escuro);
+    color: white;
+    border-left: 5px solid var(--amarelo);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s, transform 0.25s;
+    z-index: 60;
+}
+
+.toast.visivel {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.toast.erro {
+    background: var(--vermelho);
+    border-left-color: white;
+}
+
+.voltar-topo {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--amarelo);
+    color: #3b2f00;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 40;
+}
+
+.voltar-topo:hover {
+    background-color: var(--amarelo-hover);
+}
+
+/* ============================================================
+   9. RODAPÉ
+   ============================================================ */
+footer {
+    background-color: var(--verde-escuro);
+    color: var(--verde-claro);
+    text-align: center;
+    padding: 22px;
+    margin-top: 40px;
+    border-top: 6px solid var(--amarelo);
+}
+
+footer p {
+    margin: 0;
+}
+
+/* ============================================================
+   10. ADAPTAÇÃO PARA TELAS MENORES
+   ============================================================ */
+@media (max-width: 800px) {
+    #lista-noticias {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .grade-formulario {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 550px) {
+    #lista-noticias {
+        grid-template-columns: 1fr;
+    }
+
+    .cabecalho h1 {
+        font-size: 28px;
+    }
+
+    .cartao {
+        padding: 18px;
+    }
+
+    .menu {
+        justify-content: flex-start;
+    }
+}
+
+/* Respeita quem prefere menos animações */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        transition: none !important;
+    }
+}
+
+/* ============================================================
+   11. IMPRESSÃO
+   ============================================================ */
+@media print {
+    .menu,
+    #pesquisa,
+    #cadastro,
+    #backup,
+    .acoes,
+    .paginacao,
+    .voltar-topo,
+    .toast,
+    footer {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+    }
+
+    .cartao,
+    .noticia {
+        box-shadow: none;
+        break-inside: avoid;
+    }
+}
